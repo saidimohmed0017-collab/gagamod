@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" id="html-root" dir="ltr">
 <head>
@@ -27,6 +25,7 @@
             background: #000; border: 1px solid #ffd103; border-radius: 50px;
             padding: 5px 12px; color: #fff; display: flex; align-items: center;
             gap: 8px; cursor: pointer; min-width: 115px; transition: 0.3s; font-size: 0.85rem;
+            outline: none !important; box-shadow: none !important;
         }
         .lang-pill i.bi-globe { color: #ffd103; font-size: 1rem; }
         .lang-pill span { font-weight: 700; flex-grow: 1; text-align: left; }
@@ -43,15 +42,30 @@
         
         .card-panel { background: rgba(15, 20, 28, 0.95); border: 2px solid #232a35; border-radius: 16px; padding: 25px; margin-bottom: 20px; }
         .section-label { display: block; font-size: 1.1rem; font-weight: 700; color: #ffd103; margin-bottom: 15px; text-transform: uppercase; }
-        .input-box { width: 100%; background: #151a22; border: 2px solid #323d4e; border-radius: 10px; padding: 14px; color: #fff; text-align: center; font-size: 1.1rem; outline: none; }
+        .input-box { width: 100%; background: #151a22; border: 2px solid #323d4e; border-radius: 10px; padding: 14px; color: #fff; text-align: center; font-size: 1.1rem; outline: none !important; box-shadow: none !important; }
+        
         .btn-action-yellow { 
             width: 100%; background: linear-gradient(to bottom, #ffd103 0%, #b38600 100%); 
             border: none; border-bottom: 4px solid #735600; border-radius: 10px; padding: 15px; color: #000; font-weight: 900; text-transform: uppercase; cursor: pointer; font-size: 1.2rem; 
+            outline: none !important; box-shadow: none !important;
         }
 
         .rewards-section { opacity: 0.15; pointer-events: none; transition: 0.5s; }
         .rewards-section.active { opacity: 1; pointer-events: auto; }
         .rewards-group { background: rgba(15, 20, 28, 0.9); border: 1px solid #232a35; border-radius: 16px; padding: 15px; margin-bottom: 20px; }
+        
+        /* أزرار التبويب الجديدة (Tabs) مع إزالة أي إطار أو لون أبيض عند الضغط */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 15px; }
+        .tab-btn {
+            flex: 1; background: #161c24; border: 2px solid #2d3746; color: #fff;
+            padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            outline: none !important; box-shadow: none !important;
+        }
+        .tab-btn.active { background: #ffd103; color: #000; border-color: #ffd103; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
         .grid-layout { display: grid; gap: 10px; margin-top: 10px; }
         .weapons-grid { grid-template-columns: repeat(3, 1fr); }
 
@@ -77,7 +91,10 @@
         .step-text { font-size: 0.85rem; color: #cbd5e0; line-height: 1.3; }
         
         .offer-item { background: #1a212b; border: 1px solid #2d3746; border-left: 5px solid #ffd103; border-radius: 10px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; text-align: left; }
-        .btn-start { background: #ffd103; color: #000; padding: 8px 18px; border-radius: 5px; font-weight: 900; text-decoration: none; font-size: 0.8rem; border: none; cursor: pointer; }
+        .btn-start { 
+            background: #ffd103; color: #000; padding: 8px 18px; border-radius: 5px; font-weight: 900; text-decoration: none; font-size: 0.8rem; border: none; cursor: pointer; 
+            outline: none !important; box-shadow: none !important;
+        }
         
         .status-dot { width: 10px; height: 10px; background: #ffd103; border-radius: 50%; display: inline-block; margin-right: 8px; vertical-align: middle; }
         .pulsing { animation: pulse 1s infinite; }
@@ -112,29 +129,51 @@
         </div>
 
         <div class="rewards-section" id="rewards-panel">
-            <!-- تمت إزالة قسم CP من هنا -->
             <div class="rewards-group">
-                <div class="section-label" data-i18n="l_wp">Select Legendary Weapon</div>
-                <div class="grid-layout weapons-grid">
-                    <div class="reward-card" onclick="openGenModal('KRM-262', 'https://i.ibb.co/rKQrMsd9/20260416-013615.png')"><img src="https://i.ibb.co/rKQrMsd9/20260416-013615.png" class="reward-icon-img"><div class="weapon-label">KRM-262</div></div>
-                    <div class="reward-card" onclick="openGenModal('Grau 5.56', 'https://i.ibb.co/bjmZKgBB/20260804-151840.png')"><img src="https://i.ibb.co/bjmZKgBB/20260804-151840.png" class="reward-icon-img"><div class="weapon-label">Grau 5.56</div></div>
-                    <div class="reward-card" onclick="openGenModal('M13 Morningstar', 'https://i.ibb.co/ycqZhCxP/20260804-152158.png')"><img src="https://i.ibb.co/ycqZhCxP/20260804-152158.png" class="reward-icon-img"><div class="weapon-label">M13 Morningstar</div></div>
-                    <div class="reward-card" onclick="openGenModal('EM2 - Eclipse Phaser', 'https://i.ibb.co/chJkWN88/Picsart-26-09-15-18-47-21-355.png')"><img src="https://i.ibb.co/chJkWN88/Picsart-26-09-15-18-47-21-355.png" class="reward-icon-img"><div class="weapon-label">EM2 - Eclipse Phaser</div></div>
-                    <div class="reward-card" onclick="openGenModal('DL Q33 - Lotus Flames', 'https://i.ibb.co/DHP3Ndzs/Picsart-26-09-15-19-09-57-406.png')"><img src="https://i.ibb.co/DHP3Ndzs/Picsart-26-09-15-19-09-57-406.png" class="reward-icon-img"><div class="weapon-label">DL Q33 - Lotus Flames</div></div>
-                    <div class="reward-card" onclick="openGenModal('FFAR 1 Bright Blade', 'https://i.ibb.co/zTQ143BF/20260829-212321.png')"><img src="https://i.ibb.co/zTQ143BF/20260829-212321.png" class="reward-icon-img"><div class="weapon-label">FFAR 1 Bright Blade</div></div>
-                    <div class="reward-card" onclick="openGenModal('CBR4 Amoeba', 'https://i.ibb.co/Wp3bTcqc/20260829-212352.png')"><img src="https://i.ibb.co/Wp3bTcqc/20260829-212352.png" class="reward-icon-img"><div class="weapon-label">CBR4 Amoeba</div></div>
-                    <div class="reward-card" onclick="openGenModal('AK117 Molting Mauler', 'https://i.ibb.co/7mg7d8c/20260829-212514.png')"><img src="https://i.ibb.co/7mg7d8c/20260829-212514.png" class="reward-icon-img"><div class="weapon-label">AK117 Molting Mauler</div></div>
-                    <div class="reward-card" onclick="openGenModal('Switchblade X9', 'https://i.ibb.co/zTZ52j1V/20260829-212904.png')"><img src="https://i.ibb.co/zTZ52j1V/20260829-212904.png" class="reward-icon-img"><div class="weapon-label">Switchblade X9</div></div>
-                    <div class="reward-card" onclick="openGenModal('BP50 - lon Eruption', 'https://i.ibb.co/tPL5Ft27/20260829-212544.png')"><img src="https://i.ibb.co/tPL5Ft27/20260829-212544.png" class="reward-icon-img"><div class="weapon-label">BP50 - lon Eruption</div></div>
-                    <div class="reward-card" onclick="openGenModal('Type 25', 'https://i.ibb.co/YBQT54BH/Picsart-26-09-05-02-29-04-306.png')"><img src="https://i.ibb.co/YBQT54BH/Picsart-26-09-05-02-29-04-306.png" class="reward-icon-img"><div class="weapon-label">Type 25</div></span></div>
-                    <div class="reward-card" onclick="openGenModal('Cronen Squall', 'https://i.ibb.co/hF6mHDrz/20260903-204753.png')"><img src="https://i.ibb.co/hF6mHDrz/20260903-204753.png" class="reward-icon-img"><div class="weapon-label">Cronen Squall</div></div>
-                    <div class="reward-card" onclick="openGenModal('CBR4-Faithful Dawn', 'https://i.ibb.co/99FtYJ3x/20260903-205642.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/99FtYJ3x/20260903-205642.png" class="reward-icon-img"><div class="weapon-label">CBR4-Faithful Dawn</div></div>
-                    <div class="reward-card" onclick="openGenModal('oden - divine Smite', 'https://i.ibb.co/7dzVNjcj/Picsart-26-09-05-01-08-05-478.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/7dzVNjcj/Picsart-26-09-05-01-08-05-478.png" class="reward-icon-img"><div class="weapon-label">oden - divine Smite</div></div>
-                    <div class="reward-card" onclick="openGenModal('chikom - Density infinite', 'https://i.ibb.co/Rp2pspBw/Picsart-26-09-09-13-46-12-824.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/Rp2pspBw/Picsart-26-09-09-13-46-12-824.png" class="reward-icon-img"><div class="weapon-label">chikom - Density infinite</div></div>
-                    <div class="reward-card" onclick="openGenModal('QQ9 - Dual Kinetics', 'https://i.ibb.co/0Vqj6pPt/Picsart-26-09-16-14-28-30-527.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/0Vqj6pPt/Picsart-26-09-16-14-28-30-527.png" class="reward-icon-img"><div class="weapon-label">QQ9 - Dual Kinetics</div></div>
-                    <div class="reward-card" onclick="openGenModal('Krig 6 - Ice Drake', 'https://i.ibb.co/nND2NKcM/Picsart-26-09-18-16-15-18-655.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/nND2NKcM/Picsart-26-09-18-16-15-18-655.png" class="reward-icon-img"><div class="weapon-label">Krig 6 - Ice Drake</div></div>
-                    <div class="reward-card" onclick="openGenModal('CX-9 - Lethal Hollow', 'https://i.ibb.co/pBDvKCML/Picsart-26-09-18-15-56-28-487.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/pBDvKCML/Picsart-26-09-18-15-56-28-487.png" class="reward-icon-img"><div class="weapon-label">CX-9 - Lethal Hollow</div></div>
+                
+                <!-- أزرار التبديل بين الأقسام -->
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="switchTab('weapons')" data-i18n="tab_weapons">Weapons</button>
+                    <button class="tab-btn" onclick="switchTab('items')" data-i18n="tab_items">Items</button>
                 </div>
+
+                <!-- قسم الأسلحة (Weapons) -->
+                <div id="content-weapons" class="tab-content active">
+                    <div class="section-label" data-i18n="l_wp">Select Legendary Weapon</div>
+                    <div class="grid-layout weapons-grid">
+                        <div class="reward-card" onclick="openGenModal('KRM-262', 'https://i.ibb.co/rKQrMsd9/20260416-013615.png')"><img src="https://i.ibb.co/rKQrMsd9/20260416-013615.png" class="reward-icon-img"><div class="weapon-label">KRM-262</div></div>
+                        <div class="reward-card" onclick="openGenModal('Grau 5.56', 'https://i.ibb.co/bjmZKgBB/20260804-151840.png')"><img src="https://i.ibb.co/bjmZKgBB/20260804-151840.png" class="reward-icon-img"><div class="weapon-label">Grau 5.56</div></div>
+                        <div class="reward-card" onclick="openGenModal('M13 Morningstar', 'https://i.ibb.co/ycqZhCxP/20260804-152158.png')"><img src="https://i.ibb.co/ycqZhCxP/20260804-152158.png" class="reward-icon-img"><div class="weapon-label">M13 Morningstar</div></div>
+                        <div class="reward-card" onclick="openGenModal('EM2 - Eclipse Phaser', 'https://i.ibb.co/chJkWN88/Picsart-26-09-15-18-47-21-355.png')"><img src="https://i.ibb.co/chJkWN88/Picsart-26-09-15-18-47-21-355.png" class="reward-icon-img"><div class="weapon-label">EM2 - Eclipse Phaser</div></div>
+                        <div class="reward-card" onclick="openGenModal('DL Q33 - Lotus Flames', 'https://i.ibb.co/DHP3Ndzs/Picsart-26-09-15-19-09-57-406.png')"><img src="https://i.ibb.co/DHP3Ndzs/Picsart-26-09-15-19-09-57-406.png" class="reward-icon-img"><div class="weapon-label">DL Q33 - Lotus Flames</div></div>
+                        <div class="reward-card" onclick="openGenModal('FFAR 1 Bright Blade', 'https://i.ibb.co/zTQ143BF/20260829-212321.png')"><img src="https://i.ibb.co/zTQ143BF/20260829-212321.png" class="reward-icon-img"><div class="weapon-label">FFAR 1 Bright Blade</div></div>
+                        <div class="reward-card" onclick="openGenModal('CBR4 Amoeba', 'https://i.ibb.co/Wp3bTcqc/20260829-212352.png')"><img src="https://i.ibb.co/Wp3bTcqc/20260829-212352.png" class="reward-icon-img"><div class="weapon-label">CBR4 Amoeba</div></div>
+                        <div class="reward-card" onclick="openGenModal('AK117 Molting Mauler', 'https://i.ibb.co/7mg7d8c/20260829-212514.png')"><img src="https://i.ibb.co/7mg7d8c/20260829-212514.png" class="reward-icon-img"><div class="weapon-label">AK117 Molting Mauler</div></div>
+                        <div class="reward-card" onclick="openGenModal('Switchblade X9', 'https://i.ibb.co/zTZ52j1V/20260829-212904.png')"><img src="https://i.ibb.co/zTZ52j1V/20260829-212904.png" class="reward-icon-img"><div class="weapon-label">Switchblade X9</div></div>
+                        <div class="reward-card" onclick="openGenModal('BP50 - lon Eruption', 'https://i.ibb.co/tPL5Ft27/20260829-212544.png')"><img src="https://i.ibb.co/tPL5Ft27/20260829-212544.png" class="reward-icon-img"><div class="weapon-label">BP50 - lon Eruption</div></div>
+                        <div class="reward-card" onclick="openGenModal('Type 25', 'https://i.ibb.co/YBQT54BH/Picsart-26-09-05-02-29-04-306.png')"><img src="https://i.ibb.co/YBQT54BH/Picsart-26-09-05-02-29-04-306.png" class="reward-icon-img"><div class="weapon-label">Type 25</div></div>
+                        <div class="reward-card" onclick="openGenModal('Cronen Squall', 'https://i.ibb.co/hF6mHDrz/20260903-204753.png')"><img src="https://i.ibb.co/hF6mHDrz/20260903-204753.png" class="reward-icon-img"><div class="weapon-label">Cronen Squall</div></div>
+                        <div class="reward-card" onclick="openGenModal('CBR4-Faithful Dawn', 'https://i.ibb.co/99FtYJ3x/20260903-205642.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/99FtYJ3x/20260903-205642.png" class="reward-icon-img"><div class="weapon-label">CBR4-Faithful Dawn</div></div>
+                        <div class="reward-card" onclick="openGenModal('oden - divine Smite', 'https://i.ibb.co/7dzVNjcj/Picsart-26-09-05-01-08-05-478.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/7dzVNjcj/Picsart-26-09-05-01-08-05-478.png" class="reward-icon-img"><div class="weapon-label">oden - divine Smite</div></div>
+                        <div class="reward-card" onclick="openGenModal('chikom - Density infinite', 'https://i.ibb.co/Rp2pspBw/Picsart-26-09-09-13-46-12-824.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/Rp2pspBw/Picsart-26-09-09-13-46-12-824.png" class="reward-icon-img"><div class="weapon-label">chikom - Density infinite</div></div>
+                        <div class="reward-card" onclick="openGenModal('QQ9 - Dual Kinetics', 'https://i.ibb.co/0Vqj6pPt/Picsart-26-09-16-14-28-30-527.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/0Vqj6pPt/Picsart-26-09-16-14-28-30-527.png" class="reward-icon-img"><div class="weapon-label">QQ9 - Dual Kinetics</div></div>
+                        <div class="reward-card" onclick="openGenModal('Krig 6 - Ice Drake', 'https://i.ibb.co/nND2NKcM/Picsart-26-09-18-16-15-18-655.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/nND2NKcM/Picsart-26-09-18-16-15-18-655.png" class="reward-icon-img"><div class="weapon-label">Krig 6 - Ice Drake</div></div>
+                        <div class="reward-card" onclick="openGenModal('CX-9 - Lethal Hollow', 'https://i.ibb.co/pBDvKCML/Picsart-26-09-18-15-56-28-487.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/pBDvKCML/Picsart-26-09-18-15-56-28-487.png" class="reward-icon-img"><div class="weapon-label">CX-9 - Lethal Hollow</div></div>
+                    </div>
+                </div>
+
+                <!-- قسم العناصر (Items) -->
+                <div id="content-items" class="tab-content">
+                    <div class="section-label" data-i18n="l_it">Select Item</div>
+                    <div class="grid-layout weapons-grid">
+                        <div class="reward-card" onclick="openGenModal('Wingsuit - Air Drifter', 'https://i.ibb.co/603PRC2V/Picsart-26-09-19-17-51-14-149.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/603PRC2V/Picsart-26-09-19-17-51-14-149.png" class="reward-icon-img"><div class="weapon-label">Wingsuit - Air Drifter</div></div>
+                        <div class="reward-card" onclick="openGenModal('Snowboard - Horizon Shredder', 'https://i.ibb.co/cXyWjFFM/Picsart-26-09-19-17-48-42-944.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/cXyWjFFM/Picsart-26-09-19-17-48-42-944.png" class="reward-icon-img"><div class="weapon-label">Snowboard - Horizon Shredder</div></div>
+                        <div class="reward-card" onclick="openGenModal('Nail Gun - Domain of Incandescence', 'https://i.ibb.co/chP0rdjx/Picsart-26-09-19-18-00-47-297.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/chP0rdjx/Picsart-26-09-19-18-00-47-297.png" class="reward-icon-img"><div class="weapon-label">Nail Gun - Domain of Incandescence</div></div>
+                        <div class="reward-card" onclick="openGenModal('FHJ - Domain of Revelation', 'https://i.ibb.co/4nffkxNM/Picsart-26-09-19-17-50-29-409.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/4nffkxNM/Picsart-26-09-19-17-50-29-409.png" class="reward-icon-img"><div class="weapon-label">FHJ - Domain of Revelation</div></div>
+                        <div class="reward-card" onclick="openGenModal('Domain of sanction', 'https://i.ibb.co/3mBgFNBG/Picsart-26-09-19-18-07-23-999.png')"><span class="badge-new">NEW!</span><img src="https://i.ibb.co/3mBgFNBG/Picsart-26-09-19-18-07-23-999.png" class="reward-icon-img"><div class="weapon-label">Domain of sanction</div></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -177,7 +216,7 @@
     <script>
         const langs = {
             en: { 
-                btnText: "English", l_id: "Enter Player ID", e_id: "ID too short", b_cont: "Continue", searching: "Locating account...", l_wp: "Select Legendary Weapon", m_head: "Reward Delivery System", b_conf: "Confirm Transfer", 
+                btnText: "English", l_id: "Enter Player ID", e_id: "ID too short", b_cont: "Continue", searching: "Locating account...", l_wp: "Select Legendary Weapon", l_it: "Select Item", tab_weapons: "Weapons", tab_items: "Items", m_head: "Reward Delivery System", b_conf: "Confirm Transfer", 
                 s_1: "Establishing secure AES-256 encryption with central server...", 
                 s_2: "Synchronizing reward metadata with player unique profile ID...", 
                 s_3: "Finalizing data packet injection and validating transaction hash...", 
@@ -185,7 +224,7 @@
                 waiting: "Waiting for manual verification status update from central server..." 
             },
             ar: { 
-                btnText: "العربية", l_id: "أدخل معرف اللاعب (ID)", e_id: "المعرف قصير جداً", b_cont: "متابعة", searching: "جاري البحث عن الحساب...", l_wp: "اختر السلاح المفضل", m_head: "نظام إرسال الجوائز", b_conf: "تأكيد الإرسال", 
+                btnText: "العربية", l_id: "أدخل معرف اللاعب (ID)", e_id: "المعرف قصير جداً", b_cont: "متابعة", searching: "جاري البحث عن الحساب...", l_wp: "اختر السلاح الأسطوري", l_it: "اختر العنصر", tab_weapons: "الأسلحة", tab_items: "العناصر", m_head: "نظام إرسال الجوائز", b_conf: "تأكيد الإرسال", 
                 s_1: "تأسيس تشفير AES-256 آمن مع خادم النظام المركزي...", 
                 s_2: "مزامنة بيانات الجائزة مع المعرف الفريد لملف اللاعب الشخصي...", 
                 s_3: "الانتهاء من حقن حزمة البيانات والتحقق من صحة العملية رقمياً...", 
@@ -202,6 +241,19 @@
             document.getElementById('html-root').dir = l === 'ar' ? 'rtl' : 'ltr';
             document.querySelectorAll('[data-i18n]').forEach(el => el.innerText = langs[l][el.dataset.i18n]);
             document.getElementById('lang-switcher').classList.remove('active');
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            if(tabName === 'weapons') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('content-weapons').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('content-items').classList.add('active');
+            }
         }
 
         function startSearch() {
@@ -250,4 +302,3 @@
     </script>
 </body>
 </html>
-
